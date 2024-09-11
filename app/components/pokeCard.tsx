@@ -21,7 +21,8 @@ const PokeCard = ({ pokemon, shiny, gender}: PokeCardProps) => {
 
   return (
     <div className="pokemon-card flex flex-col justify-center items-center font-medium">
-      <h2 className='text-4xl 	'>{shiny ? `SHINY ${pokemon.name.toUpperCase()}` : pokemon.name.toUpperCase() }</h2>
+      <h6></h6>
+      <h2 className='text-4xl 	'>{shiny ? `SHINY ${pokemon.name.toUpperCase()} ` : pokemon.name.toUpperCase() } #{pokemon.id} </h2>
       <img
         className='w-[15vw]' 
         src={gender ? imageSrcFemale : imageSrcMale} 
