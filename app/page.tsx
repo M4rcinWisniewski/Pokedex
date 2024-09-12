@@ -58,7 +58,7 @@ export default function Home() {
   }, [selectedPokemon]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-8 pb-20 gap-4 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="flex flex-col items-center justify-center min-h-screen p-2 pb-20 gap-4 sm: font-[family-name:var(--font-geist-sans)]">
         {loading ? (
           <div>Loading...</div> // Show loading state while fetching
         ) : error ? (
