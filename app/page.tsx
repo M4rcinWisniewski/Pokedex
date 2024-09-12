@@ -3,11 +3,12 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import PokeCard from './components/pokeCard';
 import Pokemon from './types/pokemon'; // Assuming you have a types file for the Pokemon type
-
+import { Switch } from './components/shadcn/Switch';
+import { Button } from './components/shadcn/Button';
 export default function Home() {
   const [pokemon, setPokemon] = useState<Pokemon | null>(null); // Initialize state to hold Pokemon data
   const [loading, setLoading] = useState<boolean>(false); // Start as not loading
-  const [selectedPokemon, setSelectedPokemon] = useState<string>(''); // Holds the selected Pokemon after click
+  const [selectedPokemon, setSelectedPokemon] = useState<string>('pikachu'); // Holds the selected Pokemon after click
   const [inputValue, setInputValue] = useState<string>(''); // Holds the value of input field while typing
   const [error, setError] = useState<string | null>(null); // Error state to handle API errors
   const [shiny, setShiny] = useState<boolean>(false);
@@ -63,7 +64,7 @@ export default function Home() {
         ) : error ? (
           <div>{error}</div> // Show error message if API call fails
         ) : (
-          pokemon && <PokeCard pokemon={pokemon} shiny={shiny} gender={gender}/> // Show Pokemon card when data is available
+          pokemon && <PokeCard pokemon={pokemon} shiny={shiny} gender={gender}/>
         )}
       <div className="flex flex-col gap-4 justify-center items-center">   
           <input 
@@ -75,29 +76,10 @@ export default function Home() {
           onKeyDown={handleKeyDown}
         />
           
-          <button 
-            onClick={handleSearchClick} // Trigger search when button is clicked
-            className="p-2 bg-blue-500 text-white rounded"
-          >
-            Search Pokémon
-          </button>
-          <div className='flex gap-7 justify-center items-center'>
-          <p>shiny</p>
-            <label className="switch">
-            
-              <input type="checkbox"  onClick={toggleShiny}/>
-              <span className="slider round"></span>
-            </label>
-            
-          </div>
-          <div className='flex gap-4 justify-center items-center'>
-          <p>gender</p>
-            <label className="switch">
-              
-              <input type="checkbox"  onClick={toggleGender}/>
-              <span className="slider round"></span>
-            </label>
-            
+          <Button onClick={handleSearchClick} variant={'default'}>Find Pokemon</Button>
+          <div className='flex justify-center items-center gap-2'>
+            <Switch onClick={toggleShiny}/>
+            <Switch onClick={toggleGender}/>
           </div>
       </div> 
 
