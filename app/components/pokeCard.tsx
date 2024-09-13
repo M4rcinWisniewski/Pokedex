@@ -2,6 +2,8 @@
 
 import { Pokemon } from '../types/pokemon'; // Make sure you have the correct type
 import { Badge } from './shadcn/Badge';
+import Pokeball  from '../assets/pokeball.png'
+import Image from 'next/image';
 
 interface PokeCardProps {
   pokemon: Pokemon;
@@ -35,12 +37,14 @@ const pokemonTypeToVariant = {
 const PokeCard = ({ pokemon, shiny, gender }: PokeCardProps) => {
   const imageSrcMale = shiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default;
   const imageSrcFemale = shiny ? pokemon.sprites.front_shiny_female : pokemon.sprites.front_female;
-
+  const title = `${pokemon.name.toUpperCase()} #${pokemon.id}`
   return (
-    <div className="pokemon-card flex flex-col justify-center items-center font-medium">
+    <div className="pokemon-card flex flex-col justify-center items-center font-medium ">
       <h2 className='text-4xl'>
-        {shiny ? `SHINY ${pokemon.name.toUpperCase()} ` : pokemon.name.toUpperCase()} #{pokemon.id}
+        {/* {shiny ? `SHINY ${pokemon.name.toUpperCase()} ` : pokemon.name.toUpperCase()} #{pokemon.id} */}
+        {title}
       </h2>
+      <Image className='absolute top-24 z-[-1] opacity-10 w-[380px]' src={Pokeball} alt='' />
       <img
         className='w-[15vw] min-w-64'
         src={gender ? imageSrcFemale : imageSrcMale}
